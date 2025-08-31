@@ -108,43 +108,44 @@ const DashboardPage: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <img 
-                src="/src/assets/top.svg" 
-                alt="HD Logo"
-                className="h-8 mr-3"
-              />
-              <h1 className="text-xl font-semibold text-gray-900">HD Notes</h1>
+        <div className="flex items-center h-16 pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
+          {/* Logo on left corner - equal width */}
+          <div className="flex-1 flex items-center">
+            <img 
+              src="/src/assets/top.svg" 
+              alt="HD Logo"
+              className="h-8 sm:h-10"
+            />
+          </div>
+          
+          {/* Account info on right - equal width */}
+          <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              {user?.avatar_url && (
+                <img
+                  src={user.avatar_url}
+                  alt={user.name || 'User'}
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+                />
+              )}
+              <span className="hidden sm:inline text-sm font-medium text-gray-700">
+                {user?.name || user?.email}
+              </span>
             </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                {user?.avatar_url && (
-                  <img
-                    src={user.avatar_url}
-                    alt={user.name || 'User'}
-                    className="w-8 h-8 rounded-full"
-                  />
-                )}
-                <span className="text-sm font-medium text-gray-700">{user?.name || user?.email}</span>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="text-sm text-gray-500 hover:text-gray-700"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              onClick={handleLogout}
+              className="text-xs sm:text-sm text-gray-500 hover:text-gray-700 px-2 sm:px-3 py-1 rounded hover:bg-gray-100"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="pl-[10%] pr-4 sm:pr-6 lg:pr-8 py-8">
         {/* Welcome Section */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Welcome back, {user?.name || 'User'}!
           </h2>
