@@ -111,11 +111,11 @@ const DashboardPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <svg className="w-8 h-8 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" />
-                <path d="M2 17L12 22L22 17" />
-                <path d="M2 12L12 17L22 12" />
-              </svg>
+              <img 
+                src="/src/assets/top.svg" 
+                alt="HD Logo"
+                className="h-8 mr-3"
+              />
               <h1 className="text-xl font-semibold text-gray-900">HD Notes</h1>
             </div>
             
