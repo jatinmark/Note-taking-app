@@ -112,7 +112,7 @@ const DashboardPage: React.FC = () => {
           {/* Logo on left corner - equal width */}
           <div className="flex-1 flex items-center">
             <img 
-              src="/src/assets/top.svg" 
+              src="/assets/top.svg" 
               alt="HD Logo"
               className="h-8 sm:h-10"
             />

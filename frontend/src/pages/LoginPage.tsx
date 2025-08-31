@@ -33,7 +33,7 @@ const LoginPage: React.FC = () => {
             {/* Logo */}
             <div className="mb-6 sm:mb-8 flex justify-center lg:justify-start">
               <img 
-                src="/src/assets/top.svg" 
+                src="/assets/top.svg" 
                 alt="HD Logo"
                 className="h-10 sm:h-12"
               />
@@ -87,7 +87,7 @@ const LoginPage: React.FC = () => {
           {/* Background with rounded corner - 80% width, 92% height, positioned right-center */}
           <div className="absolute right-4 top-1/2 transform -translate-y-1/2 w-[80%] h-[92%] bg-[#1a1a2e] rounded-3xl overflow-hidden">
             <img 
-              src="/src/assets/right-column.png" 
+              src="/assets/right-column.png" 
               alt="3D Wave Background"
               className="absolute inset-0 w-full h-full object-cover"
             />
