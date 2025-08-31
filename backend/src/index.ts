@@ -2,7 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { errorHandler } from './middleware/errorHandler';
-import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
+import noteRoutes from './routes/noteRoutes';
 
 dotenv.config();
 
@@ -29,13 +30,14 @@ app.get('/api/health', (_req: Request, res: Response) => {
 // Sample API route
 app.get('/api', (_req: Request, res: Response) => {
   res.json({ 
-    message: 'Backend API is running!',
+    message: 'Note Taking App API',
     version: '1.0.0'
   });
 });
 
 // API Routes
-app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/notes', noteRoutes);
 
 // Error handling middleware (should be last)
 app.use(errorHandler);

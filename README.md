@@ -1,6 +1,6 @@
-# Full-Stack Application
+# HD Notes - Simple Note Taking App
 
-A modern full-stack application built with Vite, React, TypeScript, Node.js, Express, and Supabase (PostgreSQL).
+A simple and elegant note-taking application with Google OAuth authentication, built with React, Node.js, and Supabase.
 
 ## Project Structure
 
@@ -38,21 +38,53 @@ fullstack-app/
 - **Database**: PostgreSQL (via Supabase)
 - **Development Port**: 5000
 
+## Features
+
+- 🔐 **Google OAuth Authentication** - Secure login with Google account
+- 📝 **Note Management** - Create, edit, and delete notes
+- 💾 **Cloud Storage** - All notes stored securely in Supabase
+- 📱 **Responsive Design** - Works on desktop and mobile devices
+- 🎨 **Clean UI** - Modern and minimalist design
+
 ## Getting Started
 
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn
-- Supabase account for database
+- Supabase account
+- Google Cloud Console account (for OAuth)
 
 ### Environment Setup
 
-1. **Backend Configuration**
+1. **Google OAuth Setup**
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select existing one
+   - Enable Google+ API
+   - Create OAuth 2.0 credentials
+   - Add `http://localhost:5173` to authorized JavaScript origins
+   - Copy the Client ID
+
+2. **Supabase Setup**
+   - Create a new project at [Supabase](https://supabase.com)
+   - Go to SQL Editor and run the schema from `supabase_schema.sql`
+   - Get your project URL and anon key from Settings > API
+
+3. **Backend Configuration**
    - Copy `backend/.env.example` to `backend/.env`
-   - Add your Supabase credentials:
+   - Add your credentials:
      ```env
      SUPABASE_URL=your_supabase_project_url
      SUPABASE_ANON_KEY=your_supabase_anon_key
+     GOOGLE_CLIENT_ID=your_google_client_id
+     GOOGLE_CLIENT_SECRET=your_google_client_secret
+     JWT_SECRET=any_random_secret_key
+     ```
+
+4. **Frontend Configuration**
+   - Copy `frontend/.env.example` to `frontend/.env`
+   - Add your Google Client ID:
+     ```env
+     VITE_GOOGLE_CLIENT_ID=your_google_client_id
      ```
 
 ### Installation
@@ -87,27 +119,17 @@ fullstack-app/
 
 ### API Endpoints
 
-- `GET /api/health` - Health check endpoint
-- `GET /api` - API information
-- `GET /api/users` - Get all users
-- `GET /api/users/:id` - Get user by ID
-- `POST /api/users` - Create new user
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
+#### Authentication
+- `POST /api/auth/google` - Google OAuth login
+- `GET /api/auth/me` - Get current user info
+- `POST /api/auth/logout` - Logout
 
-### Database Setup
-
-1. Go to your Supabase project dashboard
-2. Create a `users` table with the following schema:
-   ```sql
-   CREATE TABLE users (
-     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-     email VARCHAR(255) UNIQUE NOT NULL,
-     name VARCHAR(255),
-     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-   );
-   ```
+#### Notes (Protected Routes)
+- `GET /api/notes` - Get all user's notes
+- `GET /api/notes/:id` - Get specific note
+- `POST /api/notes` - Create new note
+- `PUT /api/notes/:id` - Update note
+- `DELETE /api/notes/:id` - Delete note
 
 ### Build for Production
 
@@ -138,26 +160,25 @@ npm start
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-## Project Features
+## Technologies Used
 
-- ✅ TypeScript support for both frontend and backend
-- ✅ Hot reload in development
-- ✅ Tailwind CSS for styling
-- ✅ Supabase integration for database
-- ✅ CORS configured
-- ✅ Error handling middleware
-- ✅ Environment variables support
-- ✅ RESTful API structure
+- **Frontend**: React, TypeScript, Tailwind CSS, Vite, React Router, Google OAuth
+- **Backend**: Node.js, Express, TypeScript, JWT
+- **Database**: PostgreSQL (Supabase)
+- **Authentication**: Google OAuth 2.0
 
-## Next Steps
+## Screenshots
 
-You can now:
-1. Add authentication with Supabase Auth
-2. Create more database tables and services
-3. Build your UI components
-4. Add state management (Redux, Zustand, etc.)
-5. Implement real-time features with Supabase Realtime
-6. Add testing (Jest, React Testing Library, etc.)
+- Desktop Login View: Based on `desk.png` design
+- Mobile Login View: Based on `mob.png` design
+- Dashboard with notes management
+
+## Troubleshooting
+
+1. **Google OAuth Error**: Make sure your Google Client ID is correctly set in both frontend and backend
+2. **Supabase Connection Error**: Verify your Supabase URL and anon key are correct
+3. **CORS Error**: Ensure the frontend URL is correctly set in backend's CORS configuration
+4. **Database Error**: Run the SQL schema in Supabase SQL Editor
 
 ## License
 
